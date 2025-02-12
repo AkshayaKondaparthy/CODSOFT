@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+class Student {
+    private int[] marks;
+    private int totalMarks;
+    private double averagePercentage;
+    private char grade;
+
+    // Constructor
+    public Student(int subjects) {
+        this.marks = new int[subjects];
+    }
+
+    // Method to input marks
+    public void inputMarks() {
+        Scanner scanner = new Scanner(System.in);
+        for (int i = 0; i < this.marks.length; i++) {
+            System.out.print("Enter marks for subject " + (i + 1) + " (out of 100): ");
+            this.marks[i] = scanner.nextInt();
+        }
+    }
+
+    // Method to calculate total marks
+    public void calculateTotal() {
+        this.totalMarks = 0;
+        for (int mark : this.marks) {
+            this.totalMarks += mark;
+        }
+    }
+
+    // Method to calculate average percentage
+    public void calculateAverage() {
+        this.averagePercentage = (double) this.totalMarks / this.marks.length;
+    }
+
+    // Method to determine grade
+    public void determineGrade() {
+        if (this.averagePercentage >= 90) {
+            this.grade = 'A';
+        } else if (this.averagePercentage >= 80) {
+            this.grade = 'B';
+        } else if (this.averagePercentage >= 70) {
+            this.grade = 'C';
+        } else if (this.averagePercentage >= 60) {
+            this.grade = 'D';
+        } else {
+            this.grade = 'F';
+        }
+    }
+
+    // Method to display results
+    public void displayResults() {
+        System.out.println("\nTotal Marks: " + this.totalMarks);
+        System.out.println("Average Percentage: " + this.averagePercentage + "%");
+        System.out.println("Grade: " + this.grade);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of subjects: ");
+        int subjects = scanner.nextInt();
+
+        Student student = new Student(subjects);
+        student.inputMarks();
+        student.calculateTotal();
+        student.calculateAverage();
+        student.determineGrade();
+        student.displayResults();
+    }
+}
+
